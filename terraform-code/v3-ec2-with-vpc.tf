@@ -25,6 +25,7 @@ resource "aws_instance" "shehab" {
 resource "aws_security_group" "allow_SSH" {
   name        = "allow_SSH"
   description = "Allow SSH traffic"
+  vpc_id = aws_vpc.dpw-vpc.id
  
 
   tags = {
