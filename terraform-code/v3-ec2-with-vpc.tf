@@ -14,8 +14,10 @@ provider "aws" {
 resource "aws_instance" "shehab" {
   ami           = "ami-03484a09b43a06725"
   instance_type = "t2.micro"
-  key_name = "kp"
-  security_groups = [ "allow_SSH" ]
+  key_name = "kpp"
+  //security_groups = [ "allow_SSH" ]
+  subnet_id = aws_subnet.dpw-public_subent_01.id
+  vpc_security_group_ids = [ aws_security_group.allow_SSH.id ]
   tags = {
     Name = "devops-project"
   }
@@ -96,7 +98,7 @@ resource "aws_route_table_association" "dpw-rta-public-subent-1" {
 }
 // Associate subnet2 with route table
 
-resource "aws_route_table_association" "dpw-rta-public-subent-1" {
+resource "aws_route_table_association" "dpw-rta-public-subent-2" {
     subnet_id = aws_subnet.dpw-public_subent_02.id
     route_table_id = aws_route_table.dpw-public-rt.id
 }
