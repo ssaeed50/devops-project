@@ -1,0 +1,30 @@
+---
+- hosts: jenkins-master
+  become: true
+  tasks:
+
+  - name: add key
+    ansible.builtin.apt_key: 
+      url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+  
+  - name: add repo 
+    ansible.builtin.apt_repository: 
+      repo: 'deb https://pkg.jenkins.io/debian-stable binary'
+ 
+  - name: install packages
+    apt: 
+      name: openjdk-11-jre
+      state: present 
+ 
+  - name: install jenkins
+    apt: 
+      name: jenkins 
+      state: present
+  
+  - name: start jenkins
+    service: 
+      name: jenkins
+      state: started
+      enabled: yes
+
+    
