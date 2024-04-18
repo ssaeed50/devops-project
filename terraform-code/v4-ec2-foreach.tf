@@ -12,9 +12,9 @@ provider "aws" {
 }
 
 resource "aws_instance" "shehab" {
-  ami           = "ami-03484a09b43a06725"
+  ami           = "ami-023adaba598e661ac"
   instance_type = "t2.micro"
-  key_name = "kpp"
+  key_name = "ssh1"
   //security_groups = [ "allow_SSH" ]
   subnet_id = aws_subnet.dpw-public_subent_01.id
   vpc_security_group_ids = [ aws_security_group.allow_SSH.id ]
